@@ -1,0 +1,45 @@
+@media(min-width:700px){
+.nav-logo
+{
+    height: 30px;
+    max-width:100%;
+}
+}
+
+@media(max-width:700px){
+    .nav-logo
+    {
+        height: 20px;
+        max-width:100%;
+    }
+.nav-anchor
+    {
+        margin-bottom: -20px;
+    }
+}
+
+@media(min-width:1000px){
+.nav-logo
+    {
+            height: 50px;
+            max-width:100%;
+    }
+.nav-anchor
+    {
+        margin-left: 100px;
+        font-size: 20px !important;
+    
+    }
+
+}
+
+.nav-anchor
+{
+    color: #2e5702 !important;
+}
+
+.nav-anchor:hover
+{
+    text-decoration:underline;
+    text-decoration-color: #168bce;
+}
