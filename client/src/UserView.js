@@ -8,8 +8,9 @@ export function UserView()
 
 
   const [loading, setIsLoading] = useState(true);
-  let [users, setUsers] = useState({});
+  let [users, setUsers] = useState([]);
 
+ 
   const getDataUser = () => {
     return fetch('http://localhost:3001/getUser', {
       method: 'GET',
@@ -20,14 +21,26 @@ export function UserView()
     .then(data => data.json())
     .then((userData) =>
     {
-      users.id = userData.userData[0]._id
+      console.log("User data________")
+      for(let i = 0; i < userData.userData.length; i++)
+      {
 
-      users.username = userData.userData[0].username
-      users.password = userData.userData[0].password
+        console.log(userData.userData[i]._id)
+        
+        users.push(
+          <div className="col-6 border border-info">
+             <p>User id: {userData.userData[i]._id}</p>
+             <p>username:  {userData.userData[i].username}</p>
+             <p>password(hash):  {userData.userData[i].password}</p>
+             <p>email:  {userData.userData[i].email}</p>
+             <p>lastname:  {userData.userData[i].lastname}</p>
+             <p>name:  {userData.userData[i].name}</p>
+          </div>
+        )
+    
 
-      users.email = userData.userData[0].email
-      users.name = userData.userData[0].name
-      users.lastname = userData.userData[0].lastname
+
+      }
     
     })
   };
@@ -35,13 +48,13 @@ export function UserView()
     useEffect(() =>
     {
       (async  () => { 
-        setIsLoading(true)
         await getDataUser();
         setIsLoading(false);
       })();
         
     },[])
 
+  
     if(loading)
     {
       return(
@@ -55,16 +68,9 @@ export function UserView()
     return(
       <div className="bg-white container-fluid">
         <div className="row">
-          <div className="col-12">
-            <h1>User View</h1>
-            <p>Username: {users.username}</p>
-            <p>Password: {users.password}</p>
-            <p>Email: {users.email}</p>
-            <p>Nome: {users.name}</p>
-            <p>Ultimo nome: {users.lastname}</p>
-            
+            {users}
+
           </div>
-        </div>
       </div>
     )
 }
