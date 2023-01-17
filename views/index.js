@@ -73,7 +73,12 @@ app.post("/postUser", (req, res)=>
       res.status(200);
       res.send("User insert success")
     }
-  })
+    else
+    {
+      res.status(500);
+      res.send("Post failed")
+    }
+  })()
 })
 
 app.post("/updateUser", (req, res)=>
