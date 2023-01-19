@@ -16,14 +16,12 @@ require('dotenv').config({ path: path.resolve(__dirname, '.env') })
 
 const token_secret = "process.env.TOKENSECRET"
 
-app.use(cors());
 
+app.use(cors());
 app.use(express.urlencoded(
   {
     extended: true
   }))
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -64,6 +62,8 @@ app.post('/login',(req,res) =>
 
 app.post("/postUser", (req, res)=>
 {
+  console.log("REQUEST________");
+  console.log(req.body);
   (async () =>
   {
     const db = new dbRepo()
@@ -136,10 +136,8 @@ app.get("/getUser", (req, res) =>
     }
     if(findUser)
     {
-      const expireIn = 1800
       console.log("find user dbGetData_________________")
       console.log(dbGetData)
-      const token = generateAccessToken({ username: req.body.username},expireIn);
       res.json({userData: dbGetData});
     }
     else
