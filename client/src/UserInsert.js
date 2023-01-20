@@ -45,31 +45,30 @@ export function UserInsert()
     };
     
     return(
-        <div className="d-flex justify-content-center">
+        <div>
             <form className="form" onSubmit={handleSubmit}>  
-            <div class="mb-3 col-12">
-                <label for="username" class="form-label">User name</label>
+            <div class="">
+                <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" onChange={(e) => setUsername(e.target.value)}/>
-                <div id="usernameHElp" class="form-text">Insert username.</div>
             </div>
-            <div class="mb-3 col-6">
+            <div class="">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" onChange={(e) => setPassword(e.target.value)}/>
             </div>
-            <div class="mb-3 col-6">
+            <div class="">
                 <label for="email" class="form-label">email</label>
                 <input type="text" class="form-control" id="email" onChange={(e) => setEmail(e.target.value)}/>
             </div>
-            <div class="mb-3 col-6">
+            <div class="">
                 <label for="name" class="form-label">name</label>
                 <input type="text" class="form-control" id="name" onChange={(e) => setName(e.target.value)}/>
             </div>
-            <div class="mb-3 col-6">
+            <div class="">
                 <label for="last-name" class="form-label">last name</label>
                 <input type="text" class="form-control" id="last-name" onChange={(e) => setLastname(e.target.value)}/>
             </div>
-            <button type="submit" class="btn btn-success">Inser user</button>
-            <div className="message">{message ? <p>{message}</p> : null}</div>
+            <button type="submit" class="btn btn-success mt-4">Insert user</button>
+            <div className="message mt-2">{message ? <p>{message}</p> : null}</div>
             </form>
         </div>
     )

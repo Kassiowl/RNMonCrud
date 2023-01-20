@@ -34,7 +34,7 @@ export function UserView()
              <p>password(hash):  {userData.userData[i].password}</p>
              <p>email:  {userData.userData[i].email}</p>
              <p>lastname:  {userData.userData[i].lastName}</p>
-             <p>name:  {userData.userData[i].name}</p>
+             <p>name:  {userData.userData[i].firstName}</p>
           </div>
         )
     

@@ -37,7 +37,7 @@ module.exports = class DbConnect
     async dbPostData(userArg, passwordArg, emailArg, nameArg, lastNameArg)
     {
 
-        const userM = new userModel({username:userArg,password:passwordArg, email:emailArg, name:nameArg, lastName:lastNameArg});
+        const userM = new userModel({username:userArg,password:passwordArg, email:emailArg, firstName:nameArg, lastName:lastNameArg});
         try {
             await userM.save();
             return 1
