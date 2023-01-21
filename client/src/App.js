@@ -10,7 +10,6 @@ import { HttpCat } from './HttpCat';
 import { UserView } from './UserView';
 import { UserInsert } from "./UserInsert";
 import { UserUpdate } from "./UserUpdate";
-import { UserDelete } from "./UserDelete";
 
 
 
@@ -31,7 +30,6 @@ function App() {
           <Route exact path="/cat" element={<HttpCat />}></Route>
           <Route exact path="/userView" element={<UserView />}></Route>
           <Route exact path="/userInsert" element={<UserInsert />}></Route>
-          <Route exact path="/userDelete" element={<UserDelete />}></Route>
           <Route exact path="/userUpdate" element={<UserUpdate />}></Route>
         </Routes>
       </BrowserRouter>

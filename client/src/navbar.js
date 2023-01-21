@@ -64,16 +64,6 @@ export default function Navbar()
                     </NavLink>
                     </a>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link">
-                    <NavLink to="/userDelete"   
-                        className={isActive =>
-                        "nav-link" + (!isActive ? " unselected" : "") + " nav-anchor"
-                        }>
-                          Deletar usuarios
-                    </NavLink>
-                    </a>
-                  </li>
                 </ul>
                 <button className="btn btn-success btn-lg" onClick={logout} >
                           <FontAwesomeIcon icon="fa-solid fa-door-open" />

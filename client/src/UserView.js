@@ -3,6 +3,32 @@ import {  LoadingSpinner  } from "./spinner"
 import "./Userview.css"
 
 
+async function handleDelete(id)
+{
+
+  console.log("handleDeleteId")
+  console.log(id)
+  try {
+    let res = await fetch("http://localhost:3001/deleteUser", {
+        
+      headers: {
+        'Content-Type': 'application/json'
+          },
+      method: "DELETE",
+      body: JSON.stringify({
+        id:id
+      }),
+    });
+    if (res.status === 200) {
+      alert('Delete Successfully')
+      window.location.reload()
+    } else {
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export function UserView()
 {
 
@@ -35,6 +61,14 @@ export function UserView()
              <p>email:  {userData.userData[i].email}</p>
              <p>lastname:  {userData.userData[i].lastName}</p>
              <p>name:  {userData.userData[i].firstName}</p>
+             <button className="btn btn-danger" 
+                onClick={(e) => 
+                {
+                  handleDelete(userData.userData[i]._id)}
+                }
+                >
+                  Delete
+              </button>
           </div>
         )
     

@@ -48,11 +48,11 @@ module.exports = class DbConnect
           }
     }
 
-    async dbDeleteData(userArg)
+    async dbDeleteData(idArg)
     {
       try
       {
-        await userModel.deleteOne({username:userArg})
+        await userModel.deleteOne({_id:idArg})
         return 1
       }
       catch(error)
@@ -63,11 +63,13 @@ module.exports = class DbConnect
       }
     }
 
-    async dbUpdateData(userArg, userUpdate)
+    async dbUpdateData(userId, userArg, passwordArg, emailArg, nameArg, lastNameArg)
     {
+      const update = {username: userArg, password: passwordArg, email: emailArg, name: nameArg, lastName: lastNameArg}
+      const filter = userId
       try
       {
-        await userModel.findOneAndUpdate(userArg, userUpdate)
+        await userModel.findOneAndUpdate(filter, update)
         return 1
       }
       catch(error)
@@ -76,6 +78,7 @@ module.exports = class DbConnect
         console.log(error)
         return 0
       }
+      
     }
 
     async dbGetAllUsers()

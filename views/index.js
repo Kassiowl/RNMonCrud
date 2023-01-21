@@ -81,32 +81,43 @@ app.post("/postUser", (req, res)=>
   })()
 })
 
-app.post("/updateUser", (req, res)=>
+app.patch("/updateUser", (req, res)=>
 {
+  console.log("entrou no update_______________________");
+  console.log(req.body.userId);
   (async () =>
   {
     const db = new dbRepo()
-    const dbUpdateData = await db.dbUpdateData(req.body.username, req.body.usernameUpdate)
+    const dbUpdateData = await db.dbUpdateData(req.body.userId, req.body.username,req.body.password, req.body.email, req.body.name, req.body.lastName)
     if(dbUpdateData)
     {
+      console.log("update")
       res.status(200);
       res.send("User insert success")
     }
-  })
+    else
+    {
+      res.status(500);
+      res.send("something went wrong");
+    }
+  })();
 })
 
 app.delete("/deleteUser", (req, res)=>
 {
+  console.log("entrou no delete user");
+  console.log("reid___________________");
+  console.log(req.body.id);
   (async () =>
   {
     const db = new dbRepo()
-    const dbDeleteData = await db.dbDeleteData(req.body.username)
+    const dbDeleteData = await db.dbDeleteData(req.body.id)
     if(dbDeleteData)
     {
       res.status(200);
-      res.send("User insert success")
+      res.send("User delete success")
     }
-  })
+  })();
 })
 
 
