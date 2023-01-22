@@ -25,10 +25,10 @@ module.exports = class DbConnect
           );
         
     }
-    async dbGetData(name,password)
+    async dbGetData(name)
     {
         try {
-          const users = await userModel.find({'name':name, 'password': password});
+          const users = await userModel.find({'name':name});
           return users
         } catch (error) {
           return 0

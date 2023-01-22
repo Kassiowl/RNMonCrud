@@ -10,6 +10,9 @@ const { db } = require("../models/User");
 const getUser = require('../core/Repository_impl/GetUser');
 const { get } = require("http");
 const { stringify } = require("querystring");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 require('dotenv').config({ path: path.resolve(__dirname, '.env') })
 
@@ -38,19 +41,21 @@ app.post('/login',(req,res) =>
   console.log(req.body);
   let findUser = false;
   (async () => {
+
+    
     const db = new dbRepo()
-    const dbGetData = await db.dbGetData(req.body.username,req.body.password)
+    const dbGetData = await db.dbGetData(req.body.username)
     console.log(dbGetData)
-    if(Object.keys(dbGetData).length != 0)
-    {
-      findUser = true;
-    }
-    if(findUser)
+    console.log("dbGetdatapass")
+    console.log(dbGetData[0].password)
+    const result = await bcrypt.compare(req.body.password, dbGetData[0].password)
+    if(result)
     {
       const expireIn = 1800
       const token = generateAccessToken({ username: req.body.username},expireIn);
       res.json({token:token, expireIn:expireIn});
     }
+
     else
     {
       res.statusMessage = "Auth failed";
@@ -64,10 +69,12 @@ app.post("/postUser", (req, res)=>
 {
   console.log("REQUEST________");
   console.log(req.body);
+
   (async () =>
   {
+   const hashedPassword  = await bcrypt.hash(req.body.password, saltRounds)
     const db = new dbRepo()
-    const dbPostData = await db.dbPostData(req.body.username,req.body.password, req.body.email, req.body.name, req.body.lastName)
+    const dbPostData = await db.dbPostData(req.body.username,hashedPassword, req.body.email, req.body.name, req.body.lastName)
     if(dbPostData)
     {
       res.status(200);
@@ -87,8 +94,9 @@ app.patch("/updateUser", (req, res)=>
   console.log(req.body.userId);
   (async () =>
   {
+    const hashedPassword  = await bcrypt.hash(req.body.password, saltRounds)
     const db = new dbRepo()
-    const dbUpdateData = await db.dbUpdateData(req.body.userId, req.body.username,req.body.password, req.body.email, req.body.name, req.body.lastName)
+    const dbUpdateData = await db.dbUpdateData(req.body.userId, req.body.username,hashedPassword, req.body.email, req.body.name, req.body.lastName)
     if(dbUpdateData)
     {
       console.log("update")
