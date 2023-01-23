@@ -66,7 +66,10 @@ module.exports = class DbConnect
     async dbUpdateData(userId, userArg, passwordArg, emailArg, nameArg, lastNameArg)
     {
       const update = {username: userArg, password: passwordArg, email: emailArg, name: nameArg, lastName: lastNameArg}
-      const filter = userId
+      const filter = {  _id:userId  }
+      console.log("FILTER________")
+      console.log(filter)
+
       try
       {
         await userModel.findOneAndUpdate(filter, update)
