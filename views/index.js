@@ -101,7 +101,7 @@ app.patch("/updateUser", (req, res)=>
     {
       console.log("update")
       res.status(200);
-      res.send("User insert success")
+      res.send("User update success")
     }
     else
     {

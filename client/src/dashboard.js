@@ -68,7 +68,6 @@ function PersonData()
                     <p className="person-info">E-mail: {person.email}</p>
                     <p className="person-info">username {person.username}</p>
                     <p className="person-info">idade: {person.age}</p>
-                    <button class="btn btn-success btn-sm m-2">Adicionar usuario ao data base</button>
                 </div>
             </div>
         </div>
